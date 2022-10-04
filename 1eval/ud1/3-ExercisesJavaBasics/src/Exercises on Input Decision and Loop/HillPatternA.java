@@ -14,7 +14,7 @@ public class HillPatternA {
                 System.out.printf(" ");
             }
             for (col = 0; col < (row * 2) - 1; col++) {
-                System.out.printf("* ");
+                System.out.printf("# ");
             }
             System.out.printf("\n");
             

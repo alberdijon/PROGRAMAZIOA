@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class TriangularPatternC {
+public class NumberPatternD {
     public static void main(String[] args) throws Exception {
     
         int size = 0;
@@ -14,27 +14,18 @@ public class TriangularPatternC {
 
         in.close();
 
-        for (x = 1; x <= size; x++){
+        for (y = size; y >= 1; y--){
 
-            
-            for (y = 1; y <= size; y++ ){
+            for(x= y; x >= 1; x-- ){
 
-                if(x >= y){
+                System.out.print(x + " ");
 
-                    System.out.print("# "); 
-                }else{
-
-                    System.out.print("  "); 
-
-                }
-
-                
             }
 
-            System.out.println(); 
-
+            x = 1; 
+            System.out.println();
 
         }
 
-    }  
+    }
 }
