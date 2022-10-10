@@ -22,7 +22,7 @@ public class ExchangeChipher {
             
             numb = momch - 65;
 
-            momch = 90 - numb;
+            momch =(char)( 90 - numb);
 
             System.out.print(momch);
 
