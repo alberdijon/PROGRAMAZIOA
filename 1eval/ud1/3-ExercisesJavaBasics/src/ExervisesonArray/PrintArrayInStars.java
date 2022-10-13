@@ -8,6 +8,7 @@ public class PrintArrayInStars {
         final int NUM_ITEMS;
         int[] items; 
         
+        //IT IS UP TO YOU TO INCLUDE SO MANY BLANK LINES (...ALTHOUGTH I THINK THEY ARE TOO MANY)
   
    
 
@@ -18,7 +19,7 @@ public class PrintArrayInStars {
 
         items = new int[NUM_ITEMS];
   
-        if (items.length > 0) {
+        if (items.length > 0) { //TAKE CARE OF THE INDENTATION. IT IS NOT OPTIONAL. YOU CAN USE THE "FORMAT DOCUMENT" COMMAND IN YOUR IDE.
 
             System.out.print("Enter the value of all items (separated by space):");
            
