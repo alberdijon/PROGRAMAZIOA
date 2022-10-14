@@ -1,4 +1,4 @@
-package String_and_char_operations;
+ package String_and_char_operations;
 
 import java.util.Scanner;
 
