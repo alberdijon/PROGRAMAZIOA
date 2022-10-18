@@ -6,7 +6,6 @@ public class Inputvalidation {
     public static void main (String[] args) {
         Scanner in = new Scanner(System.in);  
         int inNumber;
-        boolean isValid = false;   
 
        // while (isValid == false){
 

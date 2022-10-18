@@ -17,7 +17,7 @@ public class Exponent {
         exp = in.nextInt();    
 
         in.close();
-
+        
         System.out.println(base + " raises to the power of " + exp + " is: " + exponent(base, exp));
     
     }

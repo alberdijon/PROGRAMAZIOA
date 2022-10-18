@@ -1,10 +1,9 @@
-package ExervisesonArray;
+package methods;
 
 import java.util.Scanner;
 
-public class PrintArray {
+public class print {
     public static void main(String[] args) {
-        
         Scanner in = new Scanner(System.in);
         final int NUM_ITEMS;
         int[] items;
@@ -28,21 +27,25 @@ public class PrintArray {
 
         }
 
-        System.out.print("[");
-
-        for (int i = 0; i < items.length; ++i) {
-            if (i == 0) {
-                System.out.print(items[i]);
-
-            } else {
-                System.out.print(", " + items[i]);
-
-            }
-        }
-
-        System.out.print("]");
-
+        Print (items);
+        
         in.close();
     }
 
+    public static void Print (int[] items){
+
+        System.out.print("[");
+        for(int x = 0; x < items.length; x++){
+            if (x == items.length - 1){
+
+                System.out.print(items[x]);
+                
+            }else{
+                System.out.print(items[x] + ", ");
+
+            }
+        }
+        System.out.print("]");
+
+    }
 }
