@@ -1,4 +1,3 @@
-import javax.security.sasl.AuthorizeCallback;
 
 /**
  * A Test Driver for the "Circle" class

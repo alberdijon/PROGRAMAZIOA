@@ -1,4 +1,3 @@
-import java.util.concurrent.Flow.Publisher;
 
 /**
  * The Circle class models a circle with a radius and color.
@@ -30,10 +29,20 @@ public class Circle {    // Save as "Circle.java"
    public double getRadius() {  // getter for radius
       return radius;
    }
+
+   public void setRadius(Double newRadius){
+      radius = newRadius;
+   }
+
    /** Returns the color */
    public String getColor() {   // getter for color
       return color;
    }
+
+   public void setColor(String newColor){
+      color = newColor;
+   }
+
    /** Returns the area of this circle */
    public double getArea() {
       return radius * radius * Math.PI;
