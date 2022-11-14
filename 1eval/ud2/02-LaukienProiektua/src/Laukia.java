@@ -66,7 +66,6 @@ public class Laukia {
     }
 
     public static void marraztuBeteta(Laukia l1) {
-
         for (int y = 0; y < l1.getAltuera(); y++) {
             for (int x = 0; x < l1.getZabalera(); x++) {
                 System.out.print("* ");
@@ -91,7 +90,7 @@ public class Laukia {
 
     }
 
-    public  boolean isBiggerThan(Laukia l1) {
+    public boolean isBiggerThan(Laukia l1) {
 
         boolean handiago = false;
 
@@ -104,7 +103,7 @@ public class Laukia {
     }
 
     public static Laukia getTheBiggest(Laukia[] laukiak) {
-        
+
         Laukia max = laukiak[0];
 
         for (int i = 1; i < laukiak.length && laukiak[i] != null; i++) {

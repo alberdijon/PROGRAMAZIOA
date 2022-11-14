@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Menua {
     private static int LAUKI_KOP = 10;
     private static int sortutakoak = 0;
-    private static Laukia[] laukiak;
+    private static Laukia[] laukiak = new Laukia[LAUKI_KOP];
     private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -61,7 +61,7 @@ public class Menua {
     }
 
     public static void sortu() {
-        laukiak = new Laukia[LAUKI_KOP];
+
         int zab, alt;
 
 
@@ -89,7 +89,7 @@ public class Menua {
 
 
         System.out.printf("Laukia\tZabalera\tAltuera\tAzalera\tPermietroa\t\tMota\n");
-        System.out.printf("=================================================================================\n");
+        System.out.printf("==============================================================================\n");
 
         for (int x = 0; x < sortutakoak; x++) {
             System.out.printf("%d\t\t%d\t\t%d\t\t%d\t\t%s\n", (x + 1), laukiak[x].getZabalera(), laukiak[x].getAltuera(), laukiak[x].getAzalera(), laukiak[x].getPerimetroa(), laukiak[x].getMota());
@@ -109,12 +109,12 @@ public class Menua {
         System.out.println("Beteta ala hutsik (B/H)?");
         bethuts = in.next();
 
-        if (bethuts.equals("B") || bethuts.equals("b")) {
+        if (bethuts.equals("B")) {
            
             laukiak[pos].marraztuBeteta(laukiak[pos]);
 
         } else {
-            laukiak[pos].marraztuBeteta(laukiak[pos]);
+            laukiak[pos].marraztuHutsik(laukiak[pos]);
 
         }
 
