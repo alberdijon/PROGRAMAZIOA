@@ -34,8 +34,7 @@ public class LaukiAskoSortu {
         System.out.printf("================================================================\n");
 
         for (int x = 0; x < laukiak.length; x++) {
-            System.out.printf("%d\t\t%d\t\t%d\t\t%d\t\t%s\n", (x + 1), laukiak[x].getZabalera(),
-                    laukiak[x].getAltuera(), laukiak[x].getAzalera(), laukiak[x].getPerimetroa(), laukiak[x].getMota());
+            System.out.printf("%d\t\t%d\t\t%d\t\t%d\t\t%s\n", (x + 1), laukiak[x].getZabalera(),laukiak[x].getAltuera(), laukiak[x].getAzalera(), laukiak[x].getPerimetroa(), laukiak[x].getMota());
         }
 
         in.close();

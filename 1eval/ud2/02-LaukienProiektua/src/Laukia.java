@@ -90,6 +90,32 @@ public class Laukia {
 
     }
 
+    public void marraztuBeteta(char ikurra){
+
+        for (int y = 0; y < altuera; y++) {
+            for (int x = 0; x < zabalera; x++) {
+                System.out.print(ikurra + " ");
+            }
+            System.out.println();
+        }
+
+    }
+
+    public String laukiBetea(){
+
+        String laukia = "";
+
+        for (int y = 0; y < altuera; y++) {
+            for (int x = 0; x < zabalera; x++) {
+                laukia += "* ";
+            }
+            laukia += "\n";
+        }
+
+        return laukia;
+
+    }
+
     public boolean isBiggerThan(Laukia l1) {
 
         boolean handiago = false;
