@@ -65,7 +65,7 @@ public class Laukia {
 
     }
 
-    public static void marraztuBeteta(Laukia l1) {
+    public  void marraztuBeteta(Laukia l1) {
         for (int y = 0; y < l1.getAltuera(); y++) {
             for (int x = 0; x < l1.getZabalera(); x++) {
                 System.out.print("* ");
@@ -75,7 +75,7 @@ public class Laukia {
 
     }
 
-    public static void marraztuHutsik(Laukia l1) {
+    public  void marraztuHutsik(Laukia l1) {
 
         for (int y = 1; y <= l1.getZabalera(); y++) {
             for (int x = 1; x <= l1.getAltuera(); x++) {
