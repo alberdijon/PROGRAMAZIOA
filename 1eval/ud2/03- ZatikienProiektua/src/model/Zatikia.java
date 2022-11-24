@@ -1,3 +1,7 @@
+package model;
+
+import java.util.Arrays;
+
 public class Zatikia {
     private int zenbakitzailea;
     private int izendatzailea;
@@ -128,6 +132,70 @@ public class Zatikia {
         //Integer.toString(strGoikoa);
         this.izendatzailea = izendatzailea;
         this.zenbakitzailea = zenbakitzailea;
+    }
+
+
+    public static void zatikiaOrdenatu(Zatikia[] zatikiak){
+
+       /* Zatikia moment = new Zatikia(5,5);
+
+        for(int x = 1; x < zatikiak.length; x++){
+
+            for(int y = x; y >= 1; y--){
+
+                if(zatikiak [x].isBiggerThan(zatikiak[x -1])){
+
+                    moment.setIzendatzailea(zatikiak[x].getIzendatzailea());
+                    moment.setZenbakitzailea(zatikiak[x].getZenbakitzailea());
+
+                    if(moment.isBiggerThan(zatikiak[y -1])){
+
+                        zatikiak[y].setIzendatzailea(zatikiak[y-1].getIzendatzailea());
+                        zatikiak[y].setZenbakitzailea(zatikiak[y-1].getZenbakitzailea());
+
+                        zatikiak[y-1].setIzendatzailea(moment.getIzendatzailea());
+                        zatikiak[y-1].setZenbakitzailea(moment.getZenbakitzailea());
+
+                    }
+
+                }
+
+            }
+           
+
+        }
+
+        for(int x = 0; x < zatikiak.length; x++){
+
+            System.out.println(zatikiak[x]);
+
+        }
+        */ 
+
+        for(int x = 0; x < zatikiak.length; x++){
+            for(int y = x + 1; y < zatikiak.length; y ++ ){
+
+                Zatikia temp;
+
+                if(zatikiak[x].hamartarBaliokidea() >= zatikiak[y].hamartarBaliokidea()){
+
+                    temp = new Zatikia(zatikiak[x].zenbakitzailea, zatikiak[x].izendatzailea);
+
+                    zatikiak[x] = new Zatikia(zatikiak[y].zenbakitzailea, zatikiak[y].izendatzailea);
+                    zatikiak[y] = new Zatikia(temp.zenbakitzailea, temp.izendatzailea);
+
+                }
+
+            }
+        }
+
+        
+        for(int x = 0; x < zatikiak.length; x++){
+
+            System.out.println(zatikiak[x]);
+
+        }
+
     }
 
 }
