@@ -35,9 +35,5 @@ public class proba1 {
 
         in.close();
 
-       // batu(zat1, zat2);
-
-        //zat1.batu(zat2);
-
     }
 }

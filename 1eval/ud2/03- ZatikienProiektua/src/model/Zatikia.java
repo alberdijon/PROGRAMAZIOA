@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Arrays;
-
 public class Zatikia {
     private int zenbakitzailea;
     private int izendatzailea;
@@ -54,7 +52,8 @@ public class Zatikia {
         int izend;
 
         izend = zat1.getIzendatzailea() * zat2.getIzendatzailea();
-        zenbak = (zat1.getZenbakitzailea() * zat2.getIzendatzailea()) + (zat2.getZenbakitzailea() * zat1.getIzendatzailea());
+        zenbak = (zat1.getZenbakitzailea() * zat2.getIzendatzailea())
+                + (zat2.getZenbakitzailea() * zat1.getIzendatzailea());
 
         batuketa = new Zatikia(zenbak, izend);
 
@@ -62,20 +61,21 @@ public class Zatikia {
 
     }
 
-    public  void batu(Zatikia bezteZatBat) {
+    public void batu(Zatikia bezteZatBat) {
 
         int izend;
         int zenbak;
 
         izend = this.getIzendatzailea() * bezteZatBat.getIzendatzailea();
-        zenbak = this.getZenbakitzailea() * bezteZatBat.getIzendatzailea() + bezteZatBat.getIzendatzailea() * this.getIzendatzailea();
+        zenbak = this.getZenbakitzailea() * bezteZatBat.getIzendatzailea()
+                + bezteZatBat.getIzendatzailea() * this.getIzendatzailea();
 
         this.setIzendatzailea(izend);
         this.setZenbakitzailea(zenbak);
 
     }
 
-    public double hamartarBaliokidea(){
+    public double hamartarBaliokidea() {
         double baliokidea;
 
         baliokidea = zenbakitzailea / izendatzailea;
@@ -83,13 +83,13 @@ public class Zatikia {
         return baliokidea;
 
     }
-    
-    public boolean isBiggerThan(Zatikia besteZatikiBat){
+
+    public boolean isBiggerThan(Zatikia besteZatikiBat) {
 
         boolean haundiagoa = false;
 
-        if(this.hamartarBaliokidea() > besteZatikiBat.hamartarBaliokidea()){
-            haundiagoa  = true;
+        if (this.hamartarBaliokidea() > besteZatikiBat.hamartarBaliokidea()) {
+            haundiagoa = true;
         }
 
         return haundiagoa;
@@ -97,8 +97,8 @@ public class Zatikia {
     }
 
     public int mcd() {
-        int u = Math.abs(zenbakitzailea); //valor absoluto del numerador
-        int v = Math.abs(izendatzailea); //valor absoluto del denominador
+        int u = Math.abs(zenbakitzailea); // valor absoluto del numerador
+        int v = Math.abs(izendatzailea); // valor absoluto del denominador
         if (v == 0) {
             return u;
         }
@@ -112,12 +112,12 @@ public class Zatikia {
     }
 
     public void sinplifikatu() {
-        int n = mcd(); //se calcula el mcd de la fracción
-        zenbakitzailea /=  n;
-        izendatzailea /=  n;
+        int n = mcd(); // se calcula el mcd de la fracción
+        zenbakitzailea /= n;
+        izendatzailea /= n;
     }
 
-    public Zatikia(String zatIdatzia){
+    public Zatikia(String zatIdatzia) {
 
         int barraLen = zatIdatzia.indexOf("/");
         int strLen = zatIdatzia.length();
@@ -126,58 +126,22 @@ public class Zatikia {
         String strBehekoa = zatIdatzia.substring(barraLen + 1, strLen);
 
         int zenbakitzailea = Integer.parseInt(strGoikoa);
-     
+
         int izendatzailea = Integer.parseInt(strBehekoa);
 
-        //Integer.toString(strGoikoa);
+        // Integer.toString(strGoikoa);
         this.izendatzailea = izendatzailea;
         this.zenbakitzailea = zenbakitzailea;
     }
 
+    public static void zatikiaOrdenatu(Zatikia[] zatikiak) {
 
-    public static void zatikiaOrdenatu(Zatikia[] zatikiak){
-
-       /* Zatikia moment = new Zatikia(5,5);
-
-        for(int x = 1; x < zatikiak.length; x++){
-
-            for(int y = x; y >= 1; y--){
-
-                if(zatikiak [x].isBiggerThan(zatikiak[x -1])){
-
-                    moment.setIzendatzailea(zatikiak[x].getIzendatzailea());
-                    moment.setZenbakitzailea(zatikiak[x].getZenbakitzailea());
-
-                    if(moment.isBiggerThan(zatikiak[y -1])){
-
-                        zatikiak[y].setIzendatzailea(zatikiak[y-1].getIzendatzailea());
-                        zatikiak[y].setZenbakitzailea(zatikiak[y-1].getZenbakitzailea());
-
-                        zatikiak[y-1].setIzendatzailea(moment.getIzendatzailea());
-                        zatikiak[y-1].setZenbakitzailea(moment.getZenbakitzailea());
-
-                    }
-
-                }
-
-            }
-           
-
-        }
-
-        for(int x = 0; x < zatikiak.length; x++){
-
-            System.out.println(zatikiak[x]);
-
-        }
-        */ 
-
-        for(int x = 0; x < zatikiak.length; x++){
-            for(int y = x + 1; y < zatikiak.length; y ++ ){
+        for (int x = 0; x < zatikiak.length; x++) {
+            for (int y = x + 1; y < zatikiak.length; y++) {
 
                 Zatikia temp;
 
-                if(zatikiak[x].hamartarBaliokidea() >= zatikiak[y].hamartarBaliokidea()){
+                if (zatikiak[x].hamartarBaliokidea() >= zatikiak[y].hamartarBaliokidea()) {
 
                     temp = new Zatikia(zatikiak[x].zenbakitzailea, zatikiak[x].izendatzailea);
 
@@ -189,12 +153,25 @@ public class Zatikia {
             }
         }
 
-        
-        for(int x = 0; x < zatikiak.length; x++){
+        for (int x = 0; x < zatikiak.length; x++) {
 
             System.out.println(zatikiak[x]);
 
         }
+
+    }
+
+    public boolean isBaliokidea(Zatikia besteZatikiBat) {
+
+        boolean baliokidea = false;
+
+        if (this.hamartarBaliokidea() == besteZatikiBat.hamartarBaliokidea()) {
+
+            baliokidea = true;
+
+        }
+
+        return baliokidea;
 
     }
 
