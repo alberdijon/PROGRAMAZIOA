@@ -12,6 +12,10 @@ public class proba1 {
         int izend;
         int zenb;
         Scanner in = new Scanner(System.in);
+        String adpa = "3/4";
+        Zatikia zat1;
+        zat1 = new Zatikia(adpa);
+        System.out.println(zat1);
 
         System.out.println("zenbat zatiki sartu nahi dituzu");
         zenbat = in.nextInt();
@@ -34,6 +38,10 @@ public class proba1 {
         Zatikia.zatikiaOrdenatu(zatikak);
 
         in.close();
+
+    
+        
+        
 
     }
 }

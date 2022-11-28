@@ -1,11 +1,11 @@
 package parchis.model;
 
-public class ficha {
+public class Ficha {
     
     private String color;
     private int posicion;
 
-    public ficha(String col, int pos){
+    public Ficha(String col, int pos){
 
         color = col;
         posicion = pos;
@@ -38,21 +38,11 @@ public class ficha {
 
     public void aurreratu(int gehitu){
 
-        int pos;
-
-        if ( posicion + gehitu > 68){
-
-            pos = posicion + gehitu - 100;
+        int pos = posicion + gehitu ;
 
             setPosicion(pos);
 
-        }else{
 
-            pos = posicion + gehitu;
-
-            setPosicion(pos);
-
-        }
 
     }
 

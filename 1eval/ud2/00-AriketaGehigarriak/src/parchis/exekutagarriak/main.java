@@ -2,110 +2,113 @@ package parchis.exekutagarriak;
 
 import java.util.Scanner;
 
-import parchis.model.casilla;
-import parchis.model.dado;
-import parchis.model.ficha;
+import parchis.model.Casilla;
+import parchis.model.Dado;
+import parchis.model.Ficha;
 
-public class main {
-    public static void main(String[] args) {
+public class Main {
+    public static void main (String[] args) throws InterruptedException {
+
+        String red="\033[31m"; 
+        String green="\033[32m"; 
+        String yellow="\033[33m"; 
+        String blue="\033[34m"; 
+        String reset="\u001B[0m";
+
+        String[] colores = new String[5];
+        colores[0] = yellow;
+        colores[1] = blue;
+        colores[2] = red;
+        colores[3] = green;
+        colores[4] = reset;
+
         
         Scanner in = new Scanner(System.in);
 
         int jokalari_zenb;
-        ficha [] fichas;
-        dado dado1 = new dado();
-        dado dado2 = new dado();
         int turno = 1;
+        int suma;
+        int pos_mom;
+        int cuenta = 0;
+        char bota;
         boolean irabazi = false;
+        boolean []fuera = new boolean[4];
+        boolean []vuelta = new boolean[4];
+        Ficha [] fichas;
+        Dado dado1 = new Dado();
+        Dado dado2 = new Dado();
 
-        casilla[] normalak = new casilla[56];
 
-        for (int x = 0; x < normalak.length; x++) {
-            if ((x == 5) || (x == 12) || (x == 17) || (x == 22) || (x == 29) || (x == 34) || (x == 39) || (x == 46)
-                    || (x == 51) || (x == 56) || (x == 63)) {
-
-                normalak[x] = new casilla("normala", (x + 1));
-
-            } else {
-                normalak[x] = new casilla("normala", x);
-
-            }
-
+        for(int x = 0; x < 4; x++){
+            fuera[x] = false;
+            vuelta[x] = false;
+            
         }
 
-        casilla[] grisak = new casilla[8];
+        Casilla[] normalak = new Casilla[68];
 
-        grisak[0] = new casilla("grisa", 12);
-        grisak[1] = new casilla("grisa", 17);
-        grisak[2] = new casilla("grisa", 29);
-        grisak[3] = new casilla("grisa", 34);
-        grisak[4] = new casilla("grisa", 46);
-        grisak[5] = new casilla("grisa", 51);
-        grisak[6] = new casilla("grisa", 63);
-        grisak[7] = new casilla("grisa", 68);
+        for (int x = 1; x <= 68; x++) {
 
-        casilla[] etxeak = new casilla[4];
+                normalak[x - 1] = new Casilla("normala", x);
+            
+        }
 
-        etxeak[0] = new casilla("horia", 5);
-        etxeak[1] = new casilla("urdina", 22);
-        etxeak[2] = new casilla("gorria", 39);
-        etxeak[3] = new casilla("berdea", 56);
 
-        casilla[] horiak = new casilla[4];
+        Casilla[] horiak = new Casilla[7];
 
-        horiak[0] = new casilla("horia", 69);
-        horiak[1] = new casilla("horia", 70);
-        horiak[2] = new casilla("horia", 71);
-        horiak[3] = new casilla("horia", 72);
-        horiak[4] = new casilla("horia", 73);
-        horiak[5] = new casilla("horia", 74);
-        horiak[6] = new casilla("horia", 75);
+        horiak[0] = new Casilla("horia", 69);
+        horiak[1] = new Casilla("horia", 70);
+        horiak[2] = new Casilla("horia", 71);
+        horiak[3] = new Casilla("horia", 72);
+        horiak[4] = new Casilla("horia", 73);
+        horiak[5] = new Casilla("horia", 74);
+        horiak[6] = new Casilla("horia", 75);
 
-        casilla[] urdinak = new casilla[4];
+        Casilla[] urdinak = new Casilla[7];
 
-        urdinak[0] = new casilla("urdina", 77);
-        urdinak[1] = new casilla("urdina", 78);
-        urdinak[2] = new casilla("urdina", 79);
-        urdinak[3] = new casilla("urdina", 80);
-        urdinak[4] = new casilla("urdina", 81);
-        urdinak[5] = new casilla("urdina", 82);
-        urdinak[6] = new casilla("urdina", 83);
+        urdinak[0] = new Casilla("urdina", 77);
+        urdinak[1] = new Casilla("urdina", 78);
+        urdinak[2] = new Casilla("urdina", 79);
+        urdinak[3] = new Casilla("urdina", 80);
+        urdinak[4] = new Casilla("urdina", 81);
+        urdinak[5] = new Casilla("urdina", 82);
+        urdinak[6] = new Casilla("urdina", 83);
 
-        casilla[] gorriak = new casilla[4];
+        Casilla[] gorriak = new Casilla[7];
 
-        gorriak[0] = new casilla("gorria", 85);
-        gorriak[1] = new casilla("gorria", 86);
-        gorriak[2] = new casilla("gorria", 87);
-        gorriak[3] = new casilla("gorria", 88);
-        gorriak[4] = new casilla("gorria", 89);
-        gorriak[5] = new casilla("gorria", 90);
-        gorriak[6] = new casilla("gorria", 91);
+        gorriak[0] = new Casilla("gorria", 85);
+        gorriak[1] = new Casilla("gorria", 86);
+        gorriak[2] = new Casilla("gorria", 87);
+        gorriak[3] = new Casilla("gorria", 88);
+        gorriak[4] = new Casilla("gorria", 89);
+        gorriak[5] = new Casilla("gorria", 90);
+        gorriak[6] = new Casilla("gorria", 91);
 
-        casilla[] berdeak = new casilla[4];
+        Casilla[] berdeak = new Casilla[7];
 
-        berdeak[0] = new casilla("berdea", 93);
-        berdeak[1] = new casilla("berdea", 94);
-        berdeak[2] = new casilla("berdea", 95);
-        berdeak[3] = new casilla("berdea", 96);
-        berdeak[4] = new casilla("berdea", 97);
-        berdeak[5] = new casilla("berdea", 98);
-        berdeak[6] = new casilla("berdea", 99);
+        berdeak[0] = new Casilla("berdea", 93);
+        berdeak[1] = new Casilla("berdea", 94);
+        berdeak[2] = new Casilla("berdea", 95);
+        berdeak[3] = new Casilla("berdea", 96);
+        berdeak[4] = new Casilla("berdea", 97);
+        berdeak[5] = new Casilla("berdea", 98);
+        berdeak[6] = new Casilla("berdea", 99);
 
-        casilla[] erdikoak = new casilla[4];
+        Casilla[] erdikoak = new Casilla[4];
 
-        erdikoak[0] = new casilla("horia", 76);
-        erdikoak[1] = new casilla("urdina", 84);
-        erdikoak[2] = new casilla("gorria", 92);
-        erdikoak[3] = new casilla("berdea", 100);
+        erdikoak[0] = new Casilla("horia", 76);
+        erdikoak[1] = new Casilla("urdina", 84);
+        erdikoak[2] = new Casilla("gorria", 92);
+        erdikoak[3] = new Casilla("berdea", 100);
 
         do{
 
             System.out.println("Zenbat jokalari?");
             jokalari_zenb = in.nextInt();
 
-        }while((jokalari_zenb >= 2) || (jokalari_zenb <= 4));
+        }while((jokalari_zenb < 2) || (jokalari_zenb > 4));
 
-        fichas = new ficha [jokalari_zenb];
+        fichas = new Ficha [jokalari_zenb];
 
         for(int x = 0; x < jokalari_zenb; x++){
 
@@ -128,13 +131,151 @@ public class main {
 
             }
 
-            fichas[x] = new ficha(col, 0);
+            fichas[x] = new Ficha(col, 0);
 
         }
 
         while(irabazi == false){
 
-            System.out.println(turno + ". jokalariaren aldia");
+            System.out.println(colores[turno-1] +  turno + ". jokalariaren aldia");
+
+            System.out.println(" botatzea nahi duzu edo hurrengo jokalariari txanda eman? (B/P)");
+            bota = in.next().charAt(0);
+
+            if((bota == 'B') || (bota == 'b')){
+                System.out.println("Dadoak botatzen");
+
+                for(int x = 0; x < 5; x++){
+                    int tiempo = 210;
+                    System.out.print("clack ");
+                    
+                    if(x == 0){
+                        Thread.sleep(tiempo);
+                    }else if(x == 1){
+                        tiempo -= 60;
+                        Thread.sleep(tiempo);
+                    }else{
+                        tiempo -=30;
+                        Thread.sleep(tiempo);
+                    }
+                
+                }
+    
+                dado1.tirar();
+                dado2.tirar();
+    
+                System.out.println("Lehen dadoaren balioa:" + dado1.getValor());
+                System.out.println("Bigarre dadoaren balioa:" + dado2.getValor());
+    
+                if(fuera[turno-1] == false){
+                    if((dado1.getValor() == 5)|| (dado2.getValor() == 5)){
+    
+                        if(turno == 1){
+    
+                            fichas[turno -1].setPosicion(5);
+                            fuera[turno-1] = true;
+    
+                        }else if(turno == 2){
+                            
+                            fichas[turno -1].setPosicion(22);
+                            fuera[turno-1] = true;
+    
+    
+                        }else if(turno == 3){
+    
+                            fichas[turno -1].setPosicion(39);
+                            fuera[turno-1] = true;
+    
+    
+                        }else{
+    
+                            fichas[turno -1].setPosicion(56);
+                            fuera[turno-1] = true;
+    
+                        }
+    
+                    }else{
+                        System.out.println("Suerte txarra hurrengo txandan suerte obea izango duzu");
+                    }
+                }else{
+    
+                    suma = dado1.getValor() + dado2.getValor();
+                    fichas[turno-1].aurreratu(suma);
+    
+                    if (turno == 1){
+                        if((fichas[turno-1].getPosizioa() > 68) && (vuelta[turno-1] == false)){
+                            pos_mom = horiak[fichas[turno-1].getPosizioa() - 69].getZenbakia();
+                            fichas[turno-1].setPosicion(pos_mom);
+                            vuelta[turno-1] = true;
+                        }else if((vuelta[0] == true) && (fichas[turno-1].getPosizioa() >= 75)){
+                            irabazi =true;
+                            System.out.println("Zorionak irabazi egin duzu");
+                        }
+    
+                    }else if(turno == 2){
+                        if((fichas[turno-1].getPosizioa() > 68) && (vuelta[turno-1] == false)){
+                            fichas[turno-1].setPosicion((fichas[turno -1].getPosizioa() - 68));
+                            vuelta[turno-1] = true;
+                        }else if((vuelta[turno-1] == true) && (fichas[turno-1].getPosizioa() >= 83)){
+                            irabazi =true;
+                            System.out.println("Zorionak irabazi egin duzu");
+                        }else if((fichas[turno-1].getPosizioa() > 17) && (vuelta[turno - 1] == true)){
+                            fichas[turno-1].setPosicion(urdinak[fichas[turno-1].getPosizioa() - 18].getZenbakia());
+                        }
+                    }else if(turno == 3){
+                        if((fichas[turno-1].getPosizioa() > 68) && (vuelta[turno-1] == false)){
+                            fichas[turno-1].setPosicion((fichas[turno -1].getPosizioa() - 68));
+                            vuelta[turno-1] = true;
+                        }else if((vuelta[turno-1] == true) && (fichas[turno-1].getPosizioa() >= 91)){
+                            irabazi =true;
+                            System.out.println("Zorionak irabazi egin duzu");
+                        }else if((fichas[turno-1].getPosizioa() > 34) && (vuelta[turno - 1] == true)){
+                            fichas[turno-1].setPosicion(gorriak[fichas[turno-1].getPosizioa() - 35].getZenbakia());
+                        }
+                    }else if(turno == 4){
+                        if((fichas[turno-1].getPosizioa() > 68) && (vuelta[turno-1] == false)){
+                            fichas[turno-1].setPosicion((fichas[turno -1].getPosizioa() - 68));
+                            vuelta[turno-1] = true;
+                        }else if((vuelta[turno-1] == true) && (fichas[turno-1].getPosizioa() >= 100)){
+                            irabazi =true;
+                            System.out.println("Zorionak irabazi egin duzu");
+                        }else if((fichas[turno-1].getPosizioa() > 51) && (vuelta[turno - 1] == true)){
+                            fichas[turno-1].setPosicion(gorriak[fichas[turno-1].getPosizioa() - 52].getZenbakia());
+                        }
+                    }
+    
+                }
+    
+    
+                System.out.println(turno + ". jokalaria " + fichas[turno - 1].getPosizioa() + ". kasillan dago " + colores[4]);
+            
+            }
+
+            
+            if(dado1.getValor() == dado2.getValor() ){
+                if(cuenta == 3){
+                    fichas[turno - 1].setPosicion(0);
+                    cuenta = 0;
+                    if(turno == jokalari_zenb){
+
+                        turno = 1;
+        
+                    }else{
+                        turno ++;
+                    }
+                }else{
+
+                    cuenta++;
+
+                }
+
+            }else if(turno == jokalari_zenb){
+
+                turno = 1;
+
+            }else{
+                turno ++;
+            }
 
         }
 

@@ -1,12 +1,18 @@
 package parchis.model;
 
-public class dado {
+public class Dado {
     
     private int valor;
 
-    public dado(){
+    public Dado(){
 
         valor = 1;
+
+    }
+
+    public int getValor(){
+
+        return valor;
 
     }
 

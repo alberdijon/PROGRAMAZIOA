@@ -1,25 +1,25 @@
 package parchis.model;
 
-public class casilla {
+public class Casilla {
     
     private String color;
     private int zenbakia;
     
 
-    public casilla( String col, int zenb){
+    public Casilla( String col, int zenb){
 
         color = col;
         zenbakia = zenb;
 
     }
 
-    public String getMota(){
+    public String getColor(){
 
         return color;
 
     }
 
-    public int getColor(){
+    public int getZenbakia(){
 
         return zenbakia;
 

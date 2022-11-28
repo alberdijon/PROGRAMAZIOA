@@ -11,6 +11,24 @@ public class Zatikia {
 
     }
 
+    public Zatikia(String zatIdatzia) {
+
+        int barraLen = zatIdatzia.indexOf("/");
+        int strLen = zatIdatzia.length();
+
+        String strGoikoa = zatIdatzia.substring(0, barraLen);
+        String strBehekoa = zatIdatzia.substring(barraLen + 1, strLen);
+
+        int zenbakitzailea = Integer.parseInt(strGoikoa);
+
+        int izendatzailea = Integer.parseInt(strBehekoa);
+
+        // Integer.toString(strGoikoa);
+        this.izendatzailea = izendatzailea;
+        this.zenbakitzailea = zenbakitzailea;
+    }
+
+
     public int getZenbakitzailea() {
         return zenbakitzailea;
 
@@ -117,23 +135,7 @@ public class Zatikia {
         izendatzailea /= n;
     }
 
-    public Zatikia(String zatIdatzia) {
-
-        int barraLen = zatIdatzia.indexOf("/");
-        int strLen = zatIdatzia.length();
-
-        String strGoikoa = zatIdatzia.substring(0, barraLen);
-        String strBehekoa = zatIdatzia.substring(barraLen + 1, strLen);
-
-        int zenbakitzailea = Integer.parseInt(strGoikoa);
-
-        int izendatzailea = Integer.parseInt(strBehekoa);
-
-        // Integer.toString(strGoikoa);
-        this.izendatzailea = izendatzailea;
-        this.zenbakitzailea = zenbakitzailea;
-    }
-
+   
     public static void zatikiaOrdenatu(Zatikia[] zatikiak) {
 
         for (int x = 0; x < zatikiak.length; x++) {
