@@ -7,13 +7,16 @@ import parchis.model.Dado;
 import parchis.model.Ficha;
 
 public class Main {
-    public static void main (String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
 
-        String red="\033[31m"; 
-        String green="\033[32m"; 
-        String yellow="\033[33m"; 
-        String blue="\033[34m"; 
-        String reset="\u001B[0m";
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+
+        String red = "\033[31m";
+        String green = "\033[32m";
+        String yellow = "\033[33m";
+        String blue = "\033[34m";
+        String reset = "\u001B[0m";
 
         String[] colores = new String[5];
         colores[0] = yellow;
@@ -22,7 +25,6 @@ public class Main {
         colores[3] = green;
         colores[4] = reset;
 
-        
         Scanner in = new Scanner(System.in);
 
         int jokalari_zenb;
@@ -30,29 +32,28 @@ public class Main {
         int suma;
         int pos_mom;
         int cuenta = 0;
-        char bota;
+        char bota = 'p';
+        boolean jan = false;
         boolean irabazi = false;
-        boolean []fuera = new boolean[4];
-        boolean []vuelta = new boolean[4];
-        Ficha [] fichas;
+        boolean[] fuera = new boolean[4];
+        boolean[] vuelta = new boolean[4];
+        Ficha[] fichas;
         Dado dado1 = new Dado();
         Dado dado2 = new Dado();
 
-
-        for(int x = 0; x < 4; x++){
+        for (int x = 0; x < 4; x++) {
             fuera[x] = false;
             vuelta[x] = false;
-            
+
         }
 
         Casilla[] normalak = new Casilla[68];
 
         for (int x = 1; x <= 68; x++) {
 
-                normalak[x - 1] = new Casilla("normala", x);
-            
-        }
+            normalak[x - 1] = new Casilla("normala", x);
 
+        }
 
         Casilla[] horiak = new Casilla[7];
 
@@ -101,31 +102,31 @@ public class Main {
         erdikoak[2] = new Casilla("gorria", 92);
         erdikoak[3] = new Casilla("berdea", 100);
 
-        do{
+        do {
 
-            System.out.println("Zenbat jokalari?");
+            System.out.println(colores[4] + "Zenbat jokalari?");
             jokalari_zenb = in.nextInt();
 
-        }while((jokalari_zenb < 2) || (jokalari_zenb > 4));
+        } while ((jokalari_zenb < 2) || (jokalari_zenb > 4));
 
-        fichas = new Ficha [jokalari_zenb];
+        fichas = new Ficha[jokalari_zenb];
 
-        for(int x = 0; x < jokalari_zenb; x++){
+        for (int x = 0; x < jokalari_zenb; x++) {
 
             String col;
-            if( x == 0){
+            if (x == 0) {
 
                 col = "horia";
 
-            }else if( x == 1){
+            } else if (x == 1) {
 
                 col = "urdina";
 
-            }else if( x == 2){
+            } else if (x == 2) {
 
                 col = "gorria";
 
-            }else{
+            } else {
 
                 col = "berdea";
 
@@ -135,146 +136,325 @@ public class Main {
 
         }
 
-        while(irabazi == false){
+        while (irabazi == false) {
 
-            System.out.println(colores[turno-1] +  turno + ". jokalariaren aldia");
+            System.out.println(colores[turno - 1] + turno + ". jokalariaren aldia");
 
             System.out.println(" botatzea nahi duzu edo hurrengo jokalariari txanda eman? (B/P)");
             bota = in.next().charAt(0);
 
-            if((bota == 'B') || (bota == 'b')){
+            if ((bota == 'B') || (bota == 'b')) {
                 System.out.println("Dadoak botatzen");
 
-                for(int x = 0; x < 5; x++){
+                for (int x = 0; x < 5; x++) {
                     int tiempo = 210;
                     System.out.print("clack ");
-                    
-                    if(x == 0){
+
+                    if (x == 0) {
                         Thread.sleep(tiempo);
-                    }else if(x == 1){
+                    } else if (x == 1) {
                         tiempo -= 60;
                         Thread.sleep(tiempo);
-                    }else{
-                        tiempo -=30;
+                    } else {
+                        tiempo -= 30;
                         Thread.sleep(tiempo);
                     }
-                
+
                 }
-    
+
+                System.out.println();
+
                 dado1.tirar();
                 dado2.tirar();
-    
+
                 System.out.println("Lehen dadoaren balioa:" + dado1.getValor());
-                System.out.println("Bigarre dadoaren balioa:" + dado2.getValor());
-    
-                if(fuera[turno-1] == false){
-                    if((dado1.getValor() == 5)|| (dado2.getValor() == 5)){
-    
-                        if(turno == 1){
-    
-                            fichas[turno -1].setPosicion(5);
-                            fuera[turno-1] = true;
-    
-                        }else if(turno == 2){
-                            
-                            fichas[turno -1].setPosicion(22);
-                            fuera[turno-1] = true;
-    
-    
-                        }else if(turno == 3){
-    
-                            fichas[turno -1].setPosicion(39);
-                            fuera[turno-1] = true;
-    
-    
-                        }else{
-    
-                            fichas[turno -1].setPosicion(56);
-                            fuera[turno-1] = true;
-    
+                System.out.println("Bigarren dadoaren balioa:" + dado2.getValor());
+
+                if (fuera[turno - 1] == false) {
+                    if ((dado1.getValor() == 5) || (dado2.getValor() == 5) || (dado1.getValor() + dado2.getValor() == 5)) {
+
+                        if (turno == 1) {
+
+                            fichas[turno - 1].setPosicion(5);
+                            fuera[turno - 1] = true;
+
+                        } else if (turno == 2) {
+
+                            fichas[turno - 1].setPosicion(22);
+                            fuera[turno - 1] = true;
+
+                        } else if (turno == 3) {
+
+                            fichas[turno - 1].setPosicion(39);
+                            fuera[turno - 1] = true;
+
+                        } else {
+
+                            fichas[turno - 1].setPosicion(56);
+                            fuera[turno - 1] = true;
+
                         }
-    
-                    }else{
+
+                    } else {
                         System.out.println("Suerte txarra hurrengo txandan suerte obea izango duzu");
                     }
-                }else{
-    
+                } else {
+
                     suma = dado1.getValor() + dado2.getValor();
-                    fichas[turno-1].aurreratu(suma);
-    
-                    if (turno == 1){
-                        if((fichas[turno-1].getPosizioa() > 68) && (vuelta[turno-1] == false)){
-                            pos_mom = horiak[fichas[turno-1].getPosizioa() - 69].getZenbakia();
-                            fichas[turno-1].setPosicion(pos_mom);
-                            vuelta[turno-1] = true;
-                        }else if((vuelta[0] == true) && (fichas[turno-1].getPosizioa() >= 75)){
-                            irabazi =true;
-                            System.out.println("Zorionak irabazi egin duzu");
-                        }
-    
-                    }else if(turno == 2){
-                        if((fichas[turno-1].getPosizioa() > 68) && (vuelta[turno-1] == false)){
-                            fichas[turno-1].setPosicion((fichas[turno -1].getPosizioa() - 68));
-                            vuelta[turno-1] = true;
-                        }else if((vuelta[turno-1] == true) && (fichas[turno-1].getPosizioa() >= 83)){
-                            irabazi =true;
-                            System.out.println("Zorionak irabazi egin duzu");
-                        }else if((fichas[turno-1].getPosizioa() > 17) && (vuelta[turno - 1] == true)){
-                            fichas[turno-1].setPosicion(urdinak[fichas[turno-1].getPosizioa() - 18].getZenbakia());
-                        }
-                    }else if(turno == 3){
-                        if((fichas[turno-1].getPosizioa() > 68) && (vuelta[turno-1] == false)){
-                            fichas[turno-1].setPosicion((fichas[turno -1].getPosizioa() - 68));
-                            vuelta[turno-1] = true;
-                        }else if((vuelta[turno-1] == true) && (fichas[turno-1].getPosizioa() >= 91)){
-                            irabazi =true;
-                            System.out.println("Zorionak irabazi egin duzu");
-                        }else if((fichas[turno-1].getPosizioa() > 34) && (vuelta[turno - 1] == true)){
-                            fichas[turno-1].setPosicion(gorriak[fichas[turno-1].getPosizioa() - 35].getZenbakia());
-                        }
-                    }else if(turno == 4){
-                        if((fichas[turno-1].getPosizioa() > 68) && (vuelta[turno-1] == false)){
-                            fichas[turno-1].setPosicion((fichas[turno -1].getPosizioa() - 68));
-                            vuelta[turno-1] = true;
-                        }else if((vuelta[turno-1] == true) && (fichas[turno-1].getPosizioa() >= 100)){
-                            irabazi =true;
-                            System.out.println("Zorionak irabazi egin duzu");
-                        }else if((fichas[turno-1].getPosizioa() > 51) && (vuelta[turno - 1] == true)){
-                            fichas[turno-1].setPosicion(gorriak[fichas[turno-1].getPosizioa() - 52].getZenbakia());
-                        }
-                    }
-    
-                }
-    
-    
-                System.out.println(turno + ". jokalaria " + fichas[turno - 1].getPosizioa() + ". kasillan dago " + colores[4]);
-            
-            }
+                    fichas[turno - 1].aurreratu(suma);
 
-            
-            if(dado1.getValor() == dado2.getValor() ){
-                if(cuenta == 3){
-                    fichas[turno - 1].setPosicion(0);
-                    cuenta = 0;
-                    if(turno == jokalari_zenb){
+                    do {
 
-                        turno = 1;
+                        if (turno == 1) {
+                            if ((fichas[turno - 1].getPosizioa() > 68) && (vuelta[turno - 1] == false)) {
+                                pos_mom = horiak[fichas[turno - 1].getPosizioa() - 69].getZenbakia();
+                                fichas[turno - 1].setPosicion(pos_mom);
+                                vuelta[turno - 1] = true;
+                            } else if ((vuelta[turno - 1] == true) && (fichas[turno - 1].getPosizioa() >= 75)) {
+                                irabazi = true;
+                                System.out.println("Zorionak irabazi egin duzu");
+
+                                for(int x = 0; x < 3; x++){
+
+                                    System.out.println("clap");
+
+                                }
+
+                                Thread.sleep(300);
+
+                            }
+
+                            for (int x = 0; x < fichas.length; x++) {
+
+                                if ((fichas[0].getPosizioa() == fichas[x].getPosizioa()) && (x != 0)) {
+
+                                    fichas[x].setPosicion(0);
+                                    fichas[0].aurreratu(20);
+                                    System.out.println("Oso ondo jokalari " + fichas[x].getKolorea() + "ren ficha jan duzu. \n Bera etxera bueltatuko da eta zuk 20 casilla aurreratuko dituzu");
+                                    jan = true;
+
+                                    if(fichas[0].getPosizioa() >= 75){
+                                        irabazi = true;
+                                        System.out.println("Zorionak irabazi egin duzu");
         
-                    }else{
-                        turno ++;
-                    }
-                }else{
+                                        for(int y = 0; y < 3; y++){
+        
+                                            System.out.println("clap");
+        
+                                        }
+        
+                                        Thread.sleep(300);
+                                    }
 
-                    cuenta++;
+                                } else {
+
+                                    jan = false;
+                                }
+
+                            }
+
+                        } else if (turno == 2) {
+                            if ((fichas[turno - 1].getPosizioa() > 68) && (vuelta[turno - 1] == false)) {
+                                fichas[turno - 1].setPosicion((fichas[turno - 1].getPosizioa() - 68));
+                                vuelta[turno - 1] = true;
+                            } else if ((vuelta[turno - 1] == true) && (fichas[turno - 1].getPosizioa() >= 83)) {
+                                irabazi = true;
+                                System.out.println("Zorionak irabazi egin duzu");
+
+                                for(int x = 0; x < 3; x++){
+
+                                    System.out.println("clap");
+
+                                }
+
+                                Thread.sleep(300);
+
+                            } else if ((fichas[turno - 1].getPosizioa() > 17) && (vuelta[turno - 1] == true)) {
+                                fichas[turno - 1].setPosicion(urdinak[fichas[turno - 1].getPosizioa() - 18].getZenbakia());
+                            }
+
+                            for (int x = 0; x < fichas.length; x++) {
+
+                                if ((fichas[1].getPosizioa() == fichas[x].getPosizioa()) && (x != 1)) {
+
+                                    fichas[x].setPosicion(0);
+                                    fichas[1].aurreratu(20);
+                                    System.out.println("Oso ondo jokalari " + fichas[x].getKolorea() + "ren ficha jan duzu. \n Bera etxera bueltatuko da eta zuk 20 casilla aurreratuko dituzu");
+                                    jan = true;
+
+                                    if((fichas[1].getPosizioa() >= 25) && (vuelta[1] == true)){
+                                        irabazi = true;
+                                        System.out.println("Zorionak irabazi egin duzu");
+        
+                                        for(int y = 0; y < 3; y++){
+        
+                                            System.out.println("clap");
+        
+                                        }
+        
+                                        Thread.sleep(300);
+                                    }
+
+                                } else {
+
+                                    jan = false;
+                                }
+
+                            }
+
+                        } else if (turno == 3) {
+                            if ((fichas[turno - 1].getPosizioa() > 68) && (vuelta[turno - 1] == false)) {
+                                fichas[turno - 1].setPosicion((fichas[turno - 1].getPosizioa() - 68));
+                                vuelta[turno - 1] = true;
+                            } else if ((vuelta[turno - 1] == true) && (fichas[turno - 1].getPosizioa() >= 91)) {
+                                irabazi = true;
+                                System.out.println("Zorionak irabazi egin duzu");
+
+                                for(int x = 0; x < 3; x++){
+
+                                    System.out.println("clap");
+
+                                }
+
+                                Thread.sleep(300);
+
+                            } else if ((fichas[turno - 1].getPosizioa() > 34) && (vuelta[turno - 1] == true)) {
+                                fichas[turno - 1].setPosicion(gorriak[fichas[turno - 1].getPosizioa() - 35].getZenbakia());
+                            }
+
+
+                            for (int x = 0; x < fichas.length; x++) {
+
+                                if ((fichas[2].getPosizioa() == fichas[x].getPosizioa()) && (x != 2)) {
+
+                                    fichas[x].setPosicion(0);
+                                    fichas[2].aurreratu(20);
+                                    System.out.println("Oso ondo jokalari " + fichas[x].getKolorea() + "ren ficha jan duzu. \n Bera etxera bueltatuko da eta zuk 20 casilla aurreratuko dituzu");
+                                    jan = true;
+
+                                    if((fichas[2].getPosizioa() >= 42) && (vuelta[2] == true)){
+                                        irabazi = true;
+                                        System.out.println("Zorionak irabazi egin duzu");
+        
+                                        for(int y = 0; y < 3; y++){
+        
+                                            System.out.println("clap");
+        
+                                        }
+        
+                                        Thread.sleep(300);
+                                    }                                    
+
+                                } else {
+
+                                    jan = false;
+                                }
+
+                            }
+
+                        } else if (turno == 4) {
+                            if ((fichas[turno - 1].getPosizioa() > 68) && (vuelta[turno - 1] == false)) {
+                                fichas[turno - 1].setPosicion((fichas[turno - 1].getPosizioa() - 68));
+                                vuelta[turno - 1] = true;
+                            } else if ((vuelta[turno - 1] == true) && (fichas[turno - 1].getPosizioa() >= 100)) {
+                                irabazi = true;
+                                System.out.println("Zorionak irabazi egin duzu");
+
+                                for(int x = 0; x < 3; x++){
+
+                                    System.out.println("clap");
+
+                                }
+
+                                Thread.sleep(300);
+
+                            } else if ((fichas[turno - 1].getPosizioa() > 51) && (vuelta[turno - 1] == true)) {
+                                fichas[turno - 1].setPosicion(berdeak[fichas[turno - 1].getPosizioa() - 52].getZenbakia());
+                            }
+
+
+                            for (int x = 0; x < fichas.length; x++) {
+
+                                if ((fichas[3].getPosizioa() == fichas[x].getPosizioa()) && (x != 3)) {
+
+                                    fichas[x].setPosicion(0);
+                                    fichas[3].aurreratu(20);
+                                    System.out.println("Oso ondo jokalari " + fichas[x].getKolorea() + "ren ficha jan duzu. \n Bera etxera bueltatuko da eta zuk 20 casilla aurreratuko dituzu");
+                                    jan = true;
+
+                                    if((fichas[3].getPosizioa() >= 59) && (vuelta[3] == true)){
+                                        irabazi = true;
+                                        System.out.println("Zorionak irabazi egin duzu");
+        
+                                        for(int y = 0; y < 3; y++){
+        
+                                            System.out.println("clap");
+        
+                                        }
+        
+                                        Thread.sleep(300);
+                                    }
+
+                                } else {
+
+                                    jan = false;
+                                }
+
+                            }
+
+                        }
+                    } while (jan == true);
 
                 }
 
-            }else if(turno == jokalari_zenb){
+                System.out.println(turno + ". jokalaria " + fichas[turno - 1].getPosizioa() + ". kasillan dago " + colores[4]);
 
-                turno = 1;
+                Thread.sleep(500);
+                System.out.println("\n \n");
 
-            }else{
-                turno ++;
+                if (dado1.getValor() == dado2.getValor()) {
+                    if (cuenta == 3) {
+                        fichas[turno - 1].setPosicion(0);
+                        cuenta = 0;
+                        System.out.println("Suerte txarra hiru aldiz atera duzu bi dado berdin etxera bueltatuko da");
+                        if (turno == jokalari_zenb) {
+
+                            turno = 1;
+
+                        } else {
+                            turno++;
+                        }
+                    } else {
+
+                        System.out.println("Oso ondo bi dadoen balioak berdinak direnez berriro botatzen duzu");
+                        cuenta++;
+
+                    }
+
+                } else if (turno == jokalari_zenb) {
+
+                    turno = 1;
+                    cuenta = 0;
+
+                } else {
+
+                    turno++;
+                    cuenta = 0;
+
+                }
+
+            } else {
+
+                if (turno == jokalari_zenb) {
+
+                    turno = 1;
+
+                } else {
+
+                    turno++;
+
+                }
+
             }
 
         }

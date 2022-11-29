@@ -18,11 +18,7 @@ public class Dado {
 
     public void tirar(){
 
-        System.out.println("Dadoa botatzen...");
-
         valor = (int)(Math.random()  * 6 + 1);
-
-        System.out.println(valor);
 
     }
 
