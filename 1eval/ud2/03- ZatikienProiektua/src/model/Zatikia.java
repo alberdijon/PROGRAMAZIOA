@@ -4,6 +4,13 @@ public class Zatikia {
     private int zenbakitzailea;
     private int izendatzailea;
 
+    public Zatikia(){
+
+        izendatzailea = (int)Math.random();
+        zenbakitzailea = (int)Math.random();
+
+    }
+
     public Zatikia(int zenb, int izend) {
 
         izendatzailea = izend;
@@ -114,27 +121,81 @@ public class Zatikia {
 
     }
 
-    public int mcd() {
-        int u = Math.abs(zenbakitzailea); // valor absoluto del numerador
-        int v = Math.abs(izendatzailea); // valor absoluto del denominador
-        if (v == 0) {
-            return u;
+    public static int mkt(int n1, int n2){
+        int mkt=1;
+        int[] fakt1 = Zatikia.faktorizatu(n1);
+        int[] fakt2 = Zatikia.faktorizatu(n2);
+
+        for(int i = 0; i < fakt1.length; i++){
+            mkt *= fakt1[i];
         }
-        int r;
-        while (v != 0) {
-            r = u % v;
-            u = v;
-            v = r;
+        for(int i = 0; i < fakt1.length; i++){
+            for(int a = 0; a < fakt2.length; a++){
+                if(fakt1[i] == fakt2[a]){
+                    fakt2[a] = 1;
+                    break;
+                }
+            }
         }
-        return u;
+        for(int i = 0; i < fakt2.length; i++){
+            mkt *= fakt2[i];
+        }
+
+        return mkt;
+
     }
 
-    public void sinplifikatu() {
-        int n = mcd(); // se calcula el mcd de la fracción
-        zenbakitzailea /= n;
-        izendatzailea /= n;
+    public static int zkh(int n1, int n2){
+        int zkh = 2;
+        int txikiena;
+
+        if(n1<n2){
+            txikiena = n1;
+        } else {
+            txikiena = n2;
+        }
+
+        while(zkh<=txikiena){
+            if(n1%zkh==0 && n2%zkh==0){
+                break;
+            }else{
+                zkh++;
+            }
+        }
+        return zkh;
     }
 
+    public Zatikia sinplifikatu(){
+        int[] faktGoi = Zatikia.faktorizatu(this.getZenbakitzailea());
+        int[] faktBehe = Zatikia.faktorizatu(this.getIzendatzailea());
+
+        for(int i = 0; i < faktGoi.length; i++){
+            for(int a = 0; a < faktBehe.length; a++){
+                if(faktGoi[i] == faktBehe[a]){
+                    faktBehe[a] = 1;
+                    faktGoi[i] = 1;
+                    break;
+                }
+            }
+        }
+        Zatikia emaitza;
+        int totala = 1;
+        emaitza = new Zatikia(1, 1);
+
+        for (int i = 0; i < faktGoi.length; i++) {
+            totala *= faktGoi[i];
+        }
+        emaitza.setZenbakitzailea(totala);
+
+        totala = 1;
+
+        for (int i = 0; i < faktBehe.length; i++) {
+            totala *= faktBehe[i];
+        }
+        emaitza.setIzendatzailea(totala);
+
+        return emaitza;
+    }
    
     public static void zatikiaOrdenatu(Zatikia[] zatikiak) {
 
@@ -175,6 +236,33 @@ public class Zatikia {
 
         return baliokidea;
 
+    }
+
+    public static int[] faktorizatu(int n){
+        int cont = 0;
+        int temp = n;
+        while(temp > 1){
+            for(int i = 2; i<=temp; i++){
+                if(temp%i == 0){
+                    temp /= i;
+                    cont++;
+                    break;
+                }
+            }
+        }
+
+        int[] emaitza = new int[cont];
+        for(int a = 0; n > 1; a++){
+            for(int i = 2; i<=n; i++){
+                if(n%i == 0){
+                    n /= i;
+                    emaitza[a] = i;
+                    break;
+                }
+            }
+        }
+
+        return emaitza;
     }
 
 }
