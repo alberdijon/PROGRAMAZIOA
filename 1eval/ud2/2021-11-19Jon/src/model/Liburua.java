@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Liburua {
 
     /**
@@ -88,29 +90,23 @@ public class Liburua {
 
     /**
      * Parametro bezala pasatu diguten gaia "FIKZIOA" bada (bai maiuskulaz edo
-     * minuskulaz, edozein case-etan), "Fikzioa" balioa emango diogu atributoari. Pasatu diguten
-     * gaia "HISTORIKOA" bada (edozein case-tan), "Historikoa" balioa emango diogu
-     * atributoari. Beste kasuetan, "Bestelakoa" balioa emango diogu.
+     * minuskulaz, edozein case-etan), "Fikzioa" balioa emango diogu
+     * atributoari. Pasatu diguten gaia "HISTORIKOA" bada (edozein case-tan),
+     * "Historikoa" balioa emango diogu atributoari. Beste kasuetan,
+     * "Bestelakoa" balioa emango diogu.
      */
-    public void setGaia(String gaia) {
-
-        
-        gaia.toUpperCase();
-        
-        if (gaia.equals("FIKZIOA")) {
-
-           this.gaia = "Fikzioa";
-            
-        } else if (gaia.equals("HISTORIKOA")){
-            
-            this.gaia = "Historikoa";
-
-        } else {
-            
-            this.gaia = "Bestelakoa";
-
+    public void setGaia(String gaia) { //ALDATUTAKO METODOA
+        switch (gaia.toLowerCase()) {
+            case "fikzioa":
+                this.gaia = "Fikzioa";
+                break;
+            case "historikoa":
+                this.gaia = "Historikoa";
+                break;
+            default:
+                this.gaia = "Bestelakoa";
+                break;
         }
-
     }
 
     public char getHizkuntza() {
@@ -125,24 +121,17 @@ public class Liburua {
      * atributoari.
      *
      */
-    public void setHizkuntza(char hizkuntza) {
-
-        switch(hizkuntza){
+    public void setHizkuntza(char hizkuntza) { //ALDATUTAKO METODOA           
+        switch (hizkuntza) {
             case 'e':
-                this.hizkuntza = 'E';
-                break;
             case 'E':
                 this.hizkuntza = 'E';
                 break;
             case 'g':
-                this.hizkuntza = 'G';
-                break;
             case 'G':
                 this.hizkuntza = 'G';
                 break;
             case 'i':
-                this.hizkuntza = 'I';
-                break;
             case 'I':
                 this.hizkuntza = 'I';
                 break;
@@ -150,7 +139,14 @@ public class Liburua {
                 this.hizkuntza = '-';
                 break;
         }
-        
+        /*
+        if(hizkuntza == e || hizkuntza == E || hizkuntza == g || hizkuntza == G || hizkuntza == i || hizkuntza == I){
+        this.hizkuntza = String.valueOf(hizkuntza).toUpperCase().charAt(0;
+        }
+        else
+        {
+        this.hizkuntza = '-';}
+        */
     }
 
     public double getPrezioa() {
@@ -161,17 +157,14 @@ public class Liburua {
      * Liburuaren prezioaren araberako izartxo segida bat itzuliko du metodo
      * honek. Izartxo bat euroko eta zentimo solteak kontutan izan gabe.
      */
-    public String getPrezioaIzartxotan() {
-
-        String izartxoak= "";
-
-       for (int x = 1; x <= prezioa; x++) {
-
-        izartxoak += "*";
-        
-       }
-        return izartxoak;
+    public String getPrezioaIzartxotan() {  //ALDATUTAKO METODOA
+        String izartxoak = "", prezioaIzartxoetan = "";
+        for (int i = 0; i < prezioa - 1; i++) {
+            prezioaIzartxoetan = (izartxoak.concat("*")).concat(prezioaIzartxoetan);
+        }
+        return prezioaIzartxoetan;
     }
+
     public void setPrezioa(double prezioa) {
         this.prezioa = prezioa;
     }
@@ -179,17 +172,15 @@ public class Liburua {
     /**
      * Liburu bakoitzaren kodea automatikoki kalkulatu eta itzuliko du metodo
      * honek hurrengo balioak kateatuz: GaiarenLehenKarakterea, egilearen
-     * abizena eta izenburuaren lehen sei hizkiak, espazioak kontatu gabe Adibidez:
-     * "FLiuElbosq", "FTolkienTheHob", "FTolkienTheLor", "BElorriagaMatxin",...
+     * abizena eta izenburuaren lehen sei hizkiak, espazioak kontatu gabe
+     * Adibidez: "FLiuElbosq", "FTolkienTheHob", "FTolkienTheLor",
+     * "BElorriagaMatxin",...
      */
-    public String getKodea() {
- 
-        if(this.getIzenburua().length()<5){
-            return this.getGaia().charAt(0) + this.getEgilea().substring(this.getEgilea().indexOf(" ")+1, this.getEgilea().length()) + this.getIzenburua();
-        } else{
-            return this.getGaia().charAt(0) + this.getEgilea().substring(this.getEgilea().indexOf(" ")+1, this.getEgilea().length()) + this.getIzenburua().substring(0, 5);
-        }        
-
+    public String getKodea() { //ALDATUTAKO METODOA
+        String bat = gaia.substring(0,1); //char bat = (this.getGaia().charAt(0));
+        String bi = egilea.substring(egilea.indexOf(" ") + 1);
+        String hiru = (izenburua.replace(" ","")+ "    ").substring(0,6);
+        return bat + bi + hiru;
     }
 
     /**
@@ -210,17 +201,29 @@ public class Liburua {
 
         return liburuak;
     }
+    
+    public static ArrayList <Liburua> getLiburuSortaArrayListFormatuan() {
+        ArrayList <Liburua> liburuak = new ArrayList <> ();
+        liburuak.add(new Liburua("El bosque oscuro", "Cixin Liu", 408, 2008, "FIKZIOA", 'g', 12.95));
+        liburuak.add(new Liburua("The Hobbit", "J.R.R. Tolkien", 413, 1937, "fikzioa", 'i', 20.95));
+        liburuak.add(new Liburua("The Lord of the Rings", "J.R.R. Tolkien", 122, 1954, "FIkziOA", 'I', 15.95));       
+        liburuak.add(new Liburua("Matxinsaltoen belarriak", "Unai Elorriaga", 122, 2006, "?", 'E', 10.95));     
+        liburuak.add(new Liburua("Las brujas", "Roald Dahl", 222, 1983, "Fikzioa", 'G', 10.95));
+        liburuak.add(new Liburua("Boy", "Roald Dahl", 122, 1984, "HISTORIKOA", 'I', 5.95));
+        liburuak.add(null);
+        liburuak.add(new Liburua("Obabakoak", "Bernardo Atxaga", 392, 1988, "FIKZIOA", 'E', 22.50));
+
+        return liburuak;
+    }
 
     /**
      * Liburua klaseko objektu bat String motako formatu honetan bueltatzen du:
      * izenburua (egilea)
      */
     @Override
-    public String toString() {
-         
-        return this.izenburua + "  (" + this.egilea + ")";
+    public String toString() { //ALDATUTAKO METODOA
+
+        return izenburua + " (" + egilea + ")";
     }
-
-
 
 }
