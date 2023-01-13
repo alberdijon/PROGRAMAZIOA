@@ -47,6 +47,14 @@ public class TestMyPoint {
         System.out.println();
         System.out.println();
 
+        System.out.println("c.2) p1 puntuaren datuak getXY() metodoa erabilita: Arrays.toString(p1.getXY()) => [2, 1]");
+
+        String XYp1 = Arrays.toString(p1.getXY());
+        System.out.println(XYp1);
+
+        System.out.println();
+        System.out.println();
+
         System.out.println("d) Sortu 10 puntuko array bat. Eta automatikoki bete:");
         MyPoint puntuenArraya[] = new MyPoint[10];
 
