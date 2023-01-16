@@ -57,9 +57,44 @@ public class MyCircle {
         return center;
     }
 
+    public int getCenterX(){
+
+        return center.getX();
+
+    }
+
+    public int[] getCenterXY(){
+
+        int[] erdia = new int[2];
+
+        erdia[0] = center.getX();
+        erdia[2] = center.getY();
+
+        return erdia;
+
+    }
+
+    public double getCircunference(){
+
+        
+
+    }
+
     public void setCenter(MyPoint center) {
         this.center = center;
     }
+
+    public void setCenterX(MyPoint center) {
+        this.center.setX(center); 
+    } 
+    
+    public void setCenterXY(MyPoint center) {
+        this.center = center;
+    }  
+    
+    public void setCenterY(MyPoint center) {
+        this.center = center;
+    }    
 
     public int getRadius() {
         return radius;

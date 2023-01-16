@@ -79,4 +79,20 @@ public class MyPoint {
     public String toString() {
         return "MyPoint (" + x + "," + y + ")";
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj)
+            return true;
+        if(obj == null)
+            return false;
+        if(getClass() != obj.getClass())
+            return false;
+        MyPoint other = (MyPoint) obj;
+        if(x != other.getX())
+            return false;
+        if(y != other.getY())
+            return false;
+        return true;
+    }
 }
