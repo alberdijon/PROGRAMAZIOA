@@ -1,4 +1,4 @@
-package executagarriak;
+package exekutagarriak;
 
 import model.MyPoint;
 

@@ -1,4 +1,4 @@
-package executagarriak;
+package exekutagarriak;
 
 import java.util.ArrayList;
 import java.util.Arrays;

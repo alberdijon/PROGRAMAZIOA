@@ -12,6 +12,11 @@ public class MyCircle {
 
     }
 
+    public MyCircle(int x, int y, int radius){
+        this.center = new MyPoint(x, y);
+        this.radius = radius;
+    }
+
     public MyCircle(MyPoint center, int radius){
         this.center = center;
         this.radius = radius;
@@ -76,7 +81,8 @@ public class MyCircle {
 
     public double getCircunference(){
 
-        
+        double circunference = 2 * Math.PI * radius;
+        return circunference;
 
     }
 
@@ -85,7 +91,7 @@ public class MyCircle {
     }
 
     public void setCenterX(MyPoint center) {
-        this.center.setX(center); 
+        this.center.setX(center.getX()); 
     } 
     
     public void setCenterXY(MyPoint center) {
@@ -93,7 +99,7 @@ public class MyCircle {
     }  
     
     public void setCenterY(MyPoint center) {
-        this.center = center;
+        this.center.setY(center.getY()); 
     }    
 
     public int getRadius() {
