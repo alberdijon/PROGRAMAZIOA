@@ -54,7 +54,7 @@ public class MyRectangle {
 
     @Override
     public String toString() {
-        return "MyRectangle [topLeft=" + topLeft + ", bottomRight=" + bottomRight + "]";
+        return "MyRectangle [" + topLeft + ", " + bottomRight + "]";
     }
 
 }

@@ -77,7 +77,7 @@ public class MyPoint {
 
     @Override
     public String toString() {
-        return "MyPoint (" + x + "," + y + ")";
+        return "(" + x + "," + y + ")";
     }
 
     @Override
