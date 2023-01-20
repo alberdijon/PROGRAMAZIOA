@@ -1,5 +1,6 @@
 package geometriaazterketa;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 import model.MyCircle;
@@ -59,6 +60,10 @@ public class GeometriaAzterketa {
         System.out.println("Bigarren puntua" + bigarrena);
         System.out.println("Sartu bi puntuen harteko distantzia");
         erantzuna = in.nextDouble();
+        DecimalFormat formato1 = new DecimalFormat("#.00");
+        formato1.format(distantziaER);
+        formato1.format(erantzuna);
+
 
         in.close();
 
@@ -83,10 +88,14 @@ public class GeometriaAzterketa {
         double area = circulo.getArea();
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Topatu bi zirkuluaren area " );
+        System.out.println("Topatu zirkuluaren area " );
         System.out.println("Zirkulua: " + circulo);
         System.out.println("Sartu zirkuluaren area:");
         erantzuna = in.nextDouble();
+
+        DecimalFormat formato1 = new DecimalFormat("#.00");
+        formato1.format(area);
+        formato1.format(erantzuna);
 
         in.close();
 
@@ -115,6 +124,10 @@ public class GeometriaAzterketa {
         System.out.println("Zirkulua: " + circulo);
         System.out.println("Sartu zirkuluaren perimetroa:");
         erantzuna = in.nextDouble();
+
+        DecimalFormat formato1 = new DecimalFormat("#.00");
+        formato1.format(perimetroa);
+        formato1.format(erantzuna);
 
         in.close();
 
@@ -192,6 +205,9 @@ public class GeometriaAzterketa {
         System.out.println("Sartu triangeluaren perimetroa:");
         erantzuna = in.nextDouble();
 
+        DecimalFormat formato1 = new DecimalFormat("#.00");
+        formato1.format(perimetroa);
+        formato1.format(erantzuna);
 
         in.close();
 
@@ -256,9 +272,13 @@ public class GeometriaAzterketa {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Esan karratuaren azalera" );
-        System.out.println("Triangelua" + r1);
+        System.out.println("Karratua" + r1);
         System.out.println("Sartu karratuaren azalera:");
         erantzuna = in.nextDouble();
+
+        DecimalFormat formato1 = new DecimalFormat("#.00");
+        formato1.format(azalera);
+        formato1.format(erantzuna);
 
 
         in.close();
@@ -294,6 +314,9 @@ public class GeometriaAzterketa {
         System.out.println("Sartu karratuaren azalera:");
         erantzuna = in.nextDouble();
 
+        DecimalFormat formato1 = new DecimalFormat("#.00");
+        formato1.format(azalera);
+        formato1.format(erantzuna);
 
         in.close();
 
@@ -328,6 +351,9 @@ public class GeometriaAzterketa {
         System.out.println("Sartu karratuaren perimetroa:");
         erantzuna = in.nextDouble();
 
+        DecimalFormat formato1 = new DecimalFormat("#.00");
+        formato1.format(perimetroa);
+        formato1.format(erantzuna);
 
         in.close();
 
@@ -362,6 +388,10 @@ public class GeometriaAzterketa {
         System.out.println("Bigarren zirkulua: " + c2);
         System.out.println("Sartu bi zirkuluaren harteko distantzia:");
         erantzuna = in.nextDouble();
+
+        DecimalFormat formato1 = new DecimalFormat("#.00");
+        formato1.format(distantzia);
+        formato1.format(erantzuna);
 
         in.close();
 
@@ -400,7 +430,7 @@ public class GeometriaAzterketa {
         System.out.println("Esan triangelua zirkuluaren barruan dagoen edo ez " );
         System.out.println("Zirkulua: " + c1);
         System.out.println("Triangelua: " + t1);
-        System.out.println("Sartu triangelua zirkuluaren barruan dagoen edo ez:  (B/E)");
+        System.out.println("Sartu triangelua zirkuluaren barruan dagoen edo ez:  (B/E)");        in.close();
         BE = in.next().charAt(0);
 
         in.close();
@@ -437,11 +467,13 @@ public class GeometriaAzterketa {
         boolean zuzena = false;
         System.out.println("Geometria azterketa");
         System.out.println("===================");
+        System.out.println("Gogoratu erantzunak 2 hamartarrekin bakarrik ipintzen eta PI caractera erabili behar izatekotan, 3.1416 balioa erabili  \n\n\n");
+
 
         for(int x = 0; x < 10; x++){
 
 
-            galdzemb = (int)(Math.random()*(12));
+            galdzemb = (int)(Math.random()*(12 + 1));
 
 
             switch (galdzemb){

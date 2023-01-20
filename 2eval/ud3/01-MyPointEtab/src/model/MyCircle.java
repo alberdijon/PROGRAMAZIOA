@@ -52,7 +52,7 @@ public class MyCircle {
 
     public double getArea(){
 
-        double area = radius * radius * Math.PI;
+        double area = radius * radius * 3.1416;
 
         return area;
 
@@ -81,7 +81,7 @@ public class MyCircle {
 
     public double getCircunference(){
 
-        double circunference = 2 * Math.PI * radius;
+        double circunference = 2 * 3.1416 * radius;
         return circunference;
 
     }
