@@ -10,11 +10,13 @@ public class Masajista extends IntegranteSeleccion {
     private String titulacion;
     private int aniosExperiencia;
     
-    public Masajista(int id, String nombre, String apellidos, int edad, String titulacion, int aniosExperiencia) {
+    public Masajista(String titulacion, int aniosExperiencia, int id, String nombre, int edad, String apellidos) {
         super(id, nombre, apellidos, edad);
         this.titulacion = titulacion;
         this.aniosExperiencia = aniosExperiencia;
-    }
+  }
+
+
     public String getTitulacion() {
         return titulacion;
     }
@@ -38,5 +40,11 @@ public class Masajista extends IntegranteSeleccion {
 
         System.out.println("Está jugando un partido");
 
+    }
+
+
+    @Override
+    public String toString() {
+        return "Masajista [titulacion=" + titulacion + ", aniosExperiencia=" + aniosExperiencia + "]";
     }
 }

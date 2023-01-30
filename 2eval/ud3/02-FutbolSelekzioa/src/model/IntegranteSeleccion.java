@@ -7,14 +7,12 @@ public class IntegranteSeleccion{
     private String apellidos;
     private int edad;
 
-    public IntegranteSeleccion(int id, String nombre, String apellidos, int edad){
-
-        this.edad = edad;
-        this.id = id;
+    public IntegranteSeleccion(int i, String nombre, String string2, int edad) {
+        this.id = i;
         this.nombre = nombre;
-        this.apellidos = apellidos;
-
-    }
+        this.edad = edad;
+        this.apellidos = string2;
+  }
 
     public int getId() {
         return id;
@@ -58,6 +56,11 @@ public class IntegranteSeleccion{
 
         System.out.println("Está de viaje");
 
+    }
+
+    @Override
+    public String toString() {
+        return "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", edad=" + edad;
     }
 
 }
