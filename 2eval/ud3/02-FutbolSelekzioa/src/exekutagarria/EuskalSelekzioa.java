@@ -99,10 +99,11 @@ public class EuskalSelekzioa {
             for(int i = 0; i < selekzioa.size(); i++){
                   if(id == selekzioa.get(i).getId()){
                         selekzioa.remove(i);
+                        System.out.println(selekzioa);
+                        return true;
                   }
             }
             
-            System.out.println(selekzioa);
             return false;
       }
 }

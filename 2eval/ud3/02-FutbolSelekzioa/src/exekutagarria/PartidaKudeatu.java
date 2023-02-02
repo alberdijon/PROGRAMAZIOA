@@ -1,10 +1,8 @@
 package exekutagarria;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
-import java.util.Scanner;
+
 import enumak.Demarkazioa;
 import model.Entrenador;
 import model.Futbolista;
@@ -52,5 +50,41 @@ public class PartidaKudeatu {
 
     }
 
+    /**
+     *  Metodo honek hainbat estatistika kalkulatu eta kontsolatik inprimatuko ditu.
+     *  Adibidez: 
+     * 
+     *   - Jokatutako partida kopurua
+     *   - Zein izan den partidarik gogorrena txartel kopuruari dagokionez 
+     *   - Txartel kopurua jokalariko
+     *   - Txartel gehien lortu duen jokalariaren izena
+     *   - Zenbat partida jolastu den urteko
+     *   - Duela zenbat urte jolastu zen lehen partida
+     *   - Partiden zein portzentai jokatu den abenduan
+     *   - ...
+     */
+    public static void estatistikak() {
 
+        int partidaKop = 0;
+        int gogorrena = 0;
+        int zenbatAldiz = 0, errepikatua;
+        ArrayList<Integer> idGuztiak = new ArrayList<>();
+        int[] txartelMax = new int[2];
+
+        for (int x = 0; x < partidak.length; x++) {
+            if(partidak[x] != null)
+                partidaKop++;
+
+            if (partidak[gogorrena].getTxartelak().size() < partidak[x].getTxartelak().size()) {
+                
+                gogorrena = x;
+
+            }
+
+        }
+
+        System.out.println("Jokatutako partida kopurua: " + partidaKop);
+        System.out.println("Txartel gehien eduki dituen partida: " + partidak[gogorrena]);
+
+    }
 }
