@@ -58,11 +58,11 @@ public class PartidaKudeatu {
         selekzioa.add(new Futbolista(15, 0, Demarkazioa.DEF, "Jesús", 22, "Areso"));
         selekzioa.add(new Futbolista(16, 0, Demarkazioa.DEL, "Iñigo", 24, "Vicente"));
         selekzioa.add(new Futbolista(17, 0, Demarkazioa.DEF, "Daniel", 22, "Vivian"));
-        selekzioa.add(new Entrenador("Euskal selekzioa", 1, "Francisco", 40, "Padalino"));  
-        selekzioa.add(new Entrenador("Euskal selekzioa", 2, "Joseba", 40, "Núñez"));  
-        selekzioa.add(new Entrenador("Euskal selekzioa", 3, "Markel", 40, "Lautadahandi")); 
-        selekzioa.add(new Masajista("Fisioterapeuta", 21, 4, "Iñaki", 41, "Sertxiberrieta"));
-        selekzioa.add(new IntegranteSeleccion(5,"Ander", "Etxeburu", 21)); 
+        selekzioa.add(new Entrenador("Euskal selekzioa", 18, "Francisco", 40, "Padalino"));  
+        selekzioa.add(new Entrenador("Euskal selekzioa", 19, "Joseba", 40, "Núñez"));  
+        selekzioa.add(new Entrenador("Euskal selekzioa", 20, "Markel", 40, "Lautadahandi")); 
+        selekzioa.add(new Masajista("Fisioterapeuta", 21, 21, "Iñaki", 41, "Sertxiberrieta"));
+        selekzioa.add(new IntegranteSeleccion(22,"Ander", "Etxeburu", 21)); 
 
     }
 
@@ -82,15 +82,15 @@ public class PartidaKudeatu {
         int kantitatea = 0;
 
         txartelak = txartelakJarri();
-        partidak[0] = new Partida(LocalDate.of(1990,03,21), "Errumania", txartelak );
+        partidak[0] = new Partida(LocalDate.of(1990,03,21), "Rumanía", txartelak );
         txartelak = txartelakJarri();
-        partidak[1] = new Partida(LocalDate.of(1993,12,22), "Errumania", txartelak );
+        partidak[1] = new Partida(LocalDate.of(1993,12,22), "Bolivia", txartelak );
         txartelak = txartelakJarri();
-        partidak[2] = new Partida(LocalDate.of(1994,12,23), "Errumania", txartelak );
+        partidak[2] = new Partida(LocalDate.of(1994,12,23), "Rusia", txartelak );
         txartelak = txartelakJarri();
-        partidak[3] = new Partida(LocalDate.of(1995,12,22), "Errumania", txartelak );
+        partidak[3] = new Partida(LocalDate.of(1995,12,22), "Paraguay", txartelak );
         txartelak = txartelakJarri();
-        partidak[4] = new Partida(LocalDate.of(1996,12,26), "Errumania", txartelak );
+        partidak[4] = new Partida(LocalDate.of(1996,12,26), "Estibua", txartelak );
 
         for (int x = 0; x < partidak.length; x++) {
             
@@ -152,13 +152,16 @@ public class PartidaKudeatu {
 
                 for (int x = 0; x < partidak.length; x++) {
                     
-                    if ((partidak[x] == null) || sartuta == false) {
+                    if ((partidak[x] == null) && (sartuta == false)) {
                         
                         partidak[x] = new Partida(data, herrialdea, txartelak);
+                        sartuta = true;
 
                     }
 
                 }
+
+                sartuta = false;
 
             }
            
@@ -181,7 +184,7 @@ public class PartidaKudeatu {
 
         for (int x = 0; x < partidak.length; x++) {
             if(partidak[x] != null){
-                System.out.println(partidak[x]);
+                System.out.println(partidak[x] + "\n\n");
             }
         }
 
@@ -206,6 +209,17 @@ public class PartidaKudeatu {
         int partidaKop = 0;
         int gogorrena = 0;
 
+        //-------------------------------------------------------
+        
+        ArrayList<Integer[ ] > txartelak = new ArrayList<Integer[ ] >();
+        Integer [] txart = new Integer[2];
+        ArrayList<Futbolista> futbolista = new ArrayList<Futbolista>();
+        int kant = 0;
+        int index;
+        boolean sartuta = false;
+
+        //---------------------------------------------------------
+
         for (int x = 0; x < partidak.length; x++) {
             if(partidak[x] != null){
                 partidaKop++;
@@ -217,8 +231,120 @@ public class PartidaKudeatu {
             }
         }
 
+        // ---------------------------------------------------------
+
+        for (int x = 0; x < partidak.length; x++) {
+            if(partidak[x] != null){
+                if(partidak[x].getTxartelak() != null){
+                    futbolista = partidak[x].getTxartelak();
+                    for (int y = 0; y < futbolista.size(); y++) {
+                        if((x == 0) && (y == 0)){
+                            kant = 1;
+                            txart[0] = futbolista.get(y).getId();
+                            txart[1] = kant;
+                            txartelak.add(txart);
+                        }else{
+                            for (int z = 0; z < txartelak.size(); z++) {
+                                txart = txartelak.get(z);
+                                if((txart[0] == futbolista.get(y).getId()) && (sartuta == false)){
+                                    index = futbolista.indexOf(futbolista.get(y));
+                                    kant = txart[1];
+                                    kant++;
+                                    txart[1] = kant;
+                                    txartelak.set(index, txart);
+                                    sartuta = true;
+                                }else if(sartuta == false){
+                                    txartelak.add(txart);
+                                    sartuta = true;
+                                }
+                            }
+                            sartuta = false;
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        int haundiena = 0;
+        Integer[] moment = new Integer[2];
+
+        txart = txartelak.get(0);
+
+        for(int x = 0; x < selekzioa.size(); x++){
+            for(int y = 1; y < txartelak.size(); y++){
+                moment = txartelak.get(y);
+                if(moment[1] == txart[1]){
+                    haundiena = moment[0];
+                    txart = moment;
+                }
+            }
+        }
+
+        moment = txart;
+
+        for(int x = 0; x < selekzioa.size(); x++){
+            for(int y = 0; y < txartelak.size(); y++){
+               txart = txartelak.get(y);
+               if(selekzioa.get(x).getId() == txart[0]){
+                    System.out.println(selekzioa.get(x).getNombre() + " " + selekzioa.get(x).getApellidos() + " jokalariak " + txart[1] + " txartel jaso ditu");
+                    
+                }
+            }
+        }
+
+
+       for(int x = 0; x < selekzioa.size(); x++){
+            if(selekzioa.get(x).getId() == moment[0]){
+
+                System.out.println("Txartel gehien jaso dituen joalaria: " + selekzioa.get(x).getNombre() + " " + selekzioa.get(x).getApellidos() + " izan da: " + moment[1] + " txartelekin.");
+
+            }
+       }
+
+
+        //------------------------------------------------------------
+
+
         System.out.println("\n\n\nJokatutako partida kopurua: " + partidaKop);
         System.out.println("\n\nTxartel gehien eduki dituen partida: \n" + partidak[gogorrena]);
+
+       //----------------------------------------------------------------
+
+       System.out.println("Urte bakoitzean jokatutako partida kopurua: ");
+        for (int x = 0; x < partidak.length; x++) {
+            if(partidak[x] != null){
+                int zenbat = 0;
+                boolean errepikatu = false;
+                for (int y = 0; y < partidak.length; y++) {
+                    if(partidak[y] != null){
+                        if(y < x){
+                            if(partidak[x].getData().getYear() == partidak[y].getData().getYear()){
+                                errepikatu = true;
+                                break;
+                            }
+                        }
+                    }
+                    if(errepikatu){
+                        break;
+                    }
+                }
+                if(!errepikatu){
+                    for (int j = 0; j < partidak.length; j++) {
+                        if(partidak[j] != null){
+                            if(partidak[x].getData().getYear() == partidak[j].getData().getYear()){
+                                zenbat++;
+                            }
+                        }
+                    }
+                    System.out.println(partidak[x].getData().getYear() + ": " + zenbat);
+                }
+                
+            }
+        }
+        System.out.println("");
+       
+
 
 
     }
