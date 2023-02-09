@@ -1,29 +1,38 @@
 package model;
+
+import java.util.Arrays;
+
 public class Enpresa extends Bezeroak{
 
-    public Enpresa(int kod, String izena, String helbidea, String email) {
-        super(kod, izena, helbidea, email);
-        //TODO Auto-generated constructor stub
-    }
-    
-    private String email2;
+    private int kodea;
+    private String izenJuridikoa;
+    private String izenKomertziala;
+    private String helbidea;
+    private String[] kontaktoenEmailak;
 
-    public Enpresa(int kod, String izena, String helbidea, String email, String email2) {
-        super(kod, izena, helbidea, email);
-        this.email2 = email2;
-    }
-
-    public String getEmail2() {
-        return email2;
+    @Override
+    public String getIzena() {
+        return izenKomertziala;
     }
 
-    public void setEmail2(String email2) {
-        this.email2 = email2;
+    @Override
+    public String getEmaila() {
+        return kontaktoenEmailak[0] + kontaktoenEmailak[1];
+    }
+
+    public int getKodea() {
+        return kodea;
+    }
+
+    public String getHelbidea() {
+        return helbidea;
     }
 
     @Override
     public String toString() {
-        return "Bezeroak  " + getKod() + "\n Izena  " + getIzena() + "\n Helbidea  " + getHelbidea() + "\n email  " + getEmail() + ", " + email2;
+        return "Enpresa [kodea=" + kodea + ", izena=" + getIzena() +  "helbidea=" + helbidea + ", kontaktoenEmailak=" + Arrays.toString(kontaktoenEmailak) + "]";
     }
+
+    
 
 }

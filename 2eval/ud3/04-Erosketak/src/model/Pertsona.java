@@ -1,30 +1,37 @@
 package model;
 public class Pertsona extends Bezeroak{
 
-    public Pertsona(int kod, String izena, String helbidea, String email) {
-        super(kod, izena, helbidea, email);
-        //TODO Auto-generated constructor stub
-    }
-
+    private int kodea;
+    private String izena;
     private String abizena;
+    private String helbidea;
+    private String emaila;
 
-    public Pertsona(int kod, String izena, String helbidea, String email, String abizena) {
-        super(kod, izena, helbidea, email);
-        this.abizena = abizena;
+
+    @Override
+    public String getIzena() {
+        return izena + " " + abizena;
+    }
+    
+    @Override
+    public String getEmaila() {
+        return emaila;
     }
 
-    public String getAbizena() {
-        return abizena;
+    public int getKodea() {
+        return kodea;
     }
 
-    public void setAbizena(String abizena) {
-        this.abizena = abizena;
+    public String getHelbidea() {
+        return helbidea;
     }
 
-        @Override
+    @Override
     public String toString() {
-        return "Bezeroak  " + getKod() + "\n Izena  " + getIzena() + "\t\t" + abizena+ "\n Helbidea  " + getHelbidea() + "\n email  " + getEmail();
+        return "Pertsona [kodea=" + kodea + ", izena=" + izena + ", abizena=" + abizena + ", helbidea=" + helbidea + ", emaila=" + emaila + "]";
     }
+
+    
 
     
 }
