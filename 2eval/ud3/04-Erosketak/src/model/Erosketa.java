@@ -58,4 +58,26 @@ public class Erosketa {
 
     }
 
+    public String toStringLuzea(){
+        double guztira = 0;
+        String emaitza = "";
+        emaitza += "EROSKETA";
+        emaitza += "\nKodea: " + Arrays.toString(kodea) + "\tData: " + data;
+        emaitza += "\nIzena: " + bezeroa.getIzena();
+        emaitza += "\nHelbidea: " + bezeroa.getHelbidea();
+        emaitza += "\neMail: " + bezeroa.getEmaila();
+        emaitza += "\n";
+        emaitza += String.format("%-25s %-25s %-25s %-25s %-25s\n", "Kodea", "Produktua", "Unitateak", "Prezioa", "Zenbatekoa");
+        emaitza += "-----------------------------------------------------------------------------------------------------------------------------------------\n";
+        for (int i = 0; i < produktuak.size(); i++) {
+            emaitza += String.format("%-25s %-25s %-25s %-25s %-25s\n", produktuak.get(i).getKodea(), produktuak.get(i).getIzena(), unitateak.get(i), produktuak.get(i).getPrezioa(), (unitateak.get(i) * produktuak.get(i).getPrezioa()));
+        }
+        /*for (int i = 0; i < produktuak.size(); i++) {
+            guztira += unitateak.get(i) * produktuak.get(i).getPrezioa();
+        }*/
+        emaitza += "\t\tGUZTIRA: " + guztira;
+        
+        return emaitza;
+    }
+
 }
