@@ -81,4 +81,52 @@ public class Erosketa {
         return emaitza;
     }
 
+    public char[] getKodea() {
+        return kodea;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public Bezeroak getBezeroa() {
+        return bezeroa;
+    }
+
+    public ArrayList<Produktuak> getProduktuak() {
+        return produktuak;
+    }
+
+    public ArrayList<Integer> getUnitateak() {
+        return unitateak;
+    }
+
+    public double getGuztira() {
+        return guztira;
+    }
+
+    public void setKodea(char[] kodea) {
+        this.kodea = kodea;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public void setBezeroa(Bezeroak bezeroa) {
+        this.bezeroa = bezeroa;
+    }
+
+    public void setProduktuak(ArrayList<Produktuak> produktuak) {
+        this.produktuak = produktuak;
+    }
+
+    public void setUnitateak(ArrayList<Integer> unitateak) {
+        this.unitateak = unitateak;
+    }
+
+    public void setGuztira(double guztira) {
+        this.guztira = guztira;
+    }
+
 }

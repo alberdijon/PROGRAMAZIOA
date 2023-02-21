@@ -4,6 +4,11 @@ import java.util.Arrays;
 
 public class Enpresa extends Bezeroak{
 
+    public Enpresa(int kodea, String helbidea, String string, String string2, String[] kontaktoenEmailak2) {
+        super(kodea, helbidea);
+        //TODO Auto-generated constructor stub
+    }
+
     private int kodea;
     private String izenJuridikoa;
     private String izenKomertziala;

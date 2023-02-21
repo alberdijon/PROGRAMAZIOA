@@ -7,10 +7,21 @@ public class Pertsona extends Bezeroak{
     private String helbidea;
     private String emaila;
 
+    public Pertsona(int kodea, String helbidea, String izena, String abizena, String emaila) {
+        super(kodea, helbidea);
+        this.izena = izena;
+        this.abizena = abizena;
+        this.emaila = emaila;
+    }
+
 
     @Override
     public String getIzena() {
         return izena + " " + abizena;
+    }
+
+    public String getAbizena() {
+        return abizena;
     }
     
     @Override
