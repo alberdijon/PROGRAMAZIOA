@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.FinalController">
    <children>
       <Label fx:id="GaindituBElbl" prefHeight="69.0" prefWidth="330.0" text="Label">
@@ -18,24 +17,24 @@
          <children>
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="50.0" prefWidth="53.0" text="ZUZENAK" textAlignment="CENTER" />
-                  <Label prefHeight="50.0" prefWidth="85.0" text="5" textAlignment="CENTER" />
+                  <Label prefHeight="50.0" prefWidth="74.0" text="ZUZENAK" textAlignment="CENTER" />
+                  <Label prefHeight="50.0" prefWidth="57.0" text="5" textAlignment="CENTER" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="50.0" prefWidth="63.0" text="OKERRAK" textAlignment="CENTER" />
-                  <Label prefHeight="50.0" prefWidth="73.0" text="2" textAlignment="CENTER" />
+                  <Label prefHeight="50.0" prefWidth="86.0" text="OKERRAK" textAlignment="CENTER" />
+                  <Label prefHeight="50.0" prefWidth="59.0" text="2" textAlignment="CENTER" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="50.0" prefWidth="62.0" text="DENBORA" textAlignment="CENTER" />
-                  <Label prefHeight="50.0" prefWidth="77.0" text="3:22" textAlignment="CENTER" />
+                  <Label prefHeight="50.0" prefWidth="87.0" text="DENBORA" textAlignment="CENTER" />
+                  <Label prefHeight="50.0" prefWidth="53.0" text="3:22" textAlignment="CENTER" />
                </children>
             </VBox>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="78.0" text="Button" onAction="#switchToPrimary"/>
+      <Button mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="76.0" prefWidth="78.0" text="Button" />
    </children>
 </VBox>
